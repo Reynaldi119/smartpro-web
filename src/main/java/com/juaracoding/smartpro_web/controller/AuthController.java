@@ -1,7 +1,10 @@
 package com.juaracoding.smartpro_web.controller;
 
+import java.util.Map;
+
 import org.bouncycastle.util.encoders.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -57,7 +60,32 @@ public class AuthController {
             GlobalFunction.getCaptchaLogin(loginDTO);
             return "index";
         }
+        
+        loginDTO.setPassword(decodePassword);
+        loginDTO.setCaptcha("");
+        loginDTO.setHiddenCaptcha("");
+        loginDTO.setRealCaptcha("");
 
-        return "/auth/login";
+        ResponseEntity<Object> response = null;
+        String tokenJwt = "";
+        String menuNavBar = "";
+
+        try { 
+            response = authService.login(loginDTO);
+            Map<String, Object> responseMap = (Map<String, Object>) response.getBody();
+            Map<String, Object> dataMap = (Map<String, Object>) responseMap.get("data");
+            tokenJwt = (String) dataMap.get("token");
+        } catch (Exception e) {
+            System.out.println("Error : " + e.getMessage());
+            GlobalFunction.getCaptchaLogin(loginDTO);
+            return "auth/login";
+        }
+
+        request.setAttribute("jwt_token", tokenJwt, 1);
+        request.setAttribute("username", loginDTO.getUsername(), 1);
+        request.setAttribute("password", loginDTO.getPassword(), 1);
+        
+        model.addAttribute("user", loginDTO);
+        return "index";
     }
 }

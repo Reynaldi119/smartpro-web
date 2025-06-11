@@ -5,6 +5,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.context.request.WebRequest;
 
+import com.juaracoding.smartpro_web.dto.validation.LoginDTO;
+import com.juaracoding.smartpro_web.util.GlobalFunction;
+
 @Controller
 public class DefaultController {
 
@@ -13,10 +16,18 @@ public class DefaultController {
         Object username = webRequest.getAttribute("username", 1);
         Object menuNavbar = webRequest.getAttribute("menu_navbar", 1);
         Object urlImg = webRequest.getAttribute("profile_image_url", 1);
+        Object token = webRequest.getAttribute("jwt_token", 1);
 
         model.addAttribute("username", username);
         model.addAttribute("menu_navbar", menuNavbar);
         model.addAttribute("profile_image_url", urlImg);
+
+        if (token == null) {
+            LoginDTO loginDTO = new LoginDTO();
+            GlobalFunction.getCaptchaLogin(loginDTO);
+            model.addAttribute("user", loginDTO);
+            return "/auth/login";
+        }
 
         return "index";
 

@@ -13,15 +13,8 @@ import jakarta.validation.constraints.Pattern;
  }
  */
 public class LoginDTO {
-    @NotNull(message = "Username tidak boleh kosong")
-    @NotEmpty(message = "Username tidak boleh kosong")
-    @NotBlank(message = "Username tidak boleh kosong")
-    @Pattern(regexp = "^([a-z0-9\\.]{8,16})$",
-            message = "Invalid format! Allowed format: lowercase letters, numbers and dots only, length allowed 8-16 characters, for example: michael.laksa123")
     private String username;
 
-    @Pattern(regexp = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[@_#\\-$])[\\w].{8,15}$",
-            message = "Minimum format allowed: 1 number, 1 lowercase letter, 1 uppercase letter, 1 special characters (_ \"Underscore\", - \"Hyphen\", # \"Hash\", or $ \"Dollar\" or @ \"At\"). Password length allowed 9-16 characters alphanumeric combinations, example: P@ssw0rd123")
     private String password;
 
     private String captcha;

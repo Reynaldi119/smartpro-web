@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="sidebar">
+    <div>
+        <aside class="bd-sidebar">
+            <div class="offcanvas-lg offcanvas-start bg-primary text-white" tabindex="-1" id="bdSidebar"
+                aria-labelledby="bdSidebarOffcanvasLabel">
+                <div class="offcanvas-header border-bottom">
+                    <h5 class="offcanvas-title" id="bdSidebarOffcanvasLabel">SIPRO By SmartPRO</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"
+                        data-bs-target="#bdSidebar"></button>
+                </div>
+    
+                <div class="offcanvas-body">
+                    <nav class="bd-links" id="bd-menu-nav" aria-label="Menu navigation">
+                        <ul class="bd-links-nav list-unstyled mb-0 p-3 pb-md-2 pe-lg-2">
+                            <li class="bd-links-group py-2">
+                                <button class="btn btn-primary w-100 text-start">
+                                    <i class="bi bi-house"></i>
+                                    Home
+                                </button>
+                            </li>
+                            <li class="bd-links-group py-2">
+                                <button class="btn btn-primary w-100 text-start">
+                                    <i class="bi bi-cart4"></i>
+                                    Procurement
+                                </button>
+                                <ul class="list-unstyled fw-normal pb-2 small ms-4">
+                                    <li>
+                                        <button class="btn btn-primary w-100 text-start">
+                                            <i class="bi bi-inboxes-fill"></i>
+                                            Request
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button class="btn btn-primary w-100 text-start">
+                                            <i class="bi bi-person-check-fill"></i>
+                                            Approval
+                                        </button>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="bd-links-group py-2">
+                                <button class="btn btn-primary w-100 text-start">
+                                    <i class="bi bi-cash-coin"></i>
+                                    Purchase
+                                </button>
+    
+                                <ul class="list-unstyled fw-normal pb-2 small ms-4">
+                                    <li>
+                                        <button class="btn btn-primary w-100 text-start">
+                                            <i class="bi bi-inboxes-fill"></i>
+                                            Request
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button class="btn btn-primary w-100 text-start">
+                                            <i class="bi bi-person-check-fill"></i>
+                                            Approval
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button class="btn btn-primary w-100 text-start">
+                                            <i class="bi bi-file-earmark-text-fill"></i>
+                                            Generate Order
+                                        </button>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="bd-links-group py-2">
+                                <button class="btn btn-primary w-100 text-start">
+                                    <i class="bi bi-gear"></i>
+                                    App Setting
+                                </button>
+    
+                                <ul class="list-unstyled fw-normal pb-2 small ms-4">
+                                    <li>
+                                        <button class="btn btn-primary w-100 text-start">
+                                            <i class="bi bi-building-fill"></i>
+                                            Division
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button class="btn btn-primary w-100 text-start">
+                                            <i class="bi bi-person-check-fill"></i>
+                                            Role
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button class="btn btn-primary w-100 text-start">
+                                            <i class="bi bi-person-fill-lock"></i>
+                                            Access Permission
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button class="btn btn-primary w-100 text-start">
+                                            <i class="bi bi-people-fill"></i>
+                                            Staff
+                                        </button>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+    
+        </aside>
+    </div>
+    
+    <!-- <nav class="sidebar">
+        <div class="sidebar-content">
+            <div class="menu-item " onclick="navigateToHome()">
+                <img src="../assets/images/img_home.svg" alt="Home" class="menu-icon" />
+                <i class="bi bi-house-fill menu-icon"></i>
+                <span class="menu-text">Home</span>
+            </div>
+
+            <img src="../assets/images/img_menu_separator.svg" alt="Separator" class="menu-separator" />
+
+            <div class="menu-item" onclick="navigateToProcurement()">
+                <img src="../assets/images/img_shopping_cart.svg" alt="Procurement" class="menu-icon" />
+                <span class="menu-text">Procurement</span>
+            </div>
+
+            <div class="menu-item active" onclick="navigateToApproval()">
+                <img src="../assets/images/img_user_check.svg" alt="Approval" class="menu-icon" />
+                <span class="menu-text">Approval</span>
+            </div>
+
+            <img src="../assets/images/img_menu_separator.svg" alt="Separator" class="menu-separator" />
+
+            <div class="menu-item" onclick="navigateToPurchase()">
+                <img src="../assets/images/img_dollar_sign.svg" alt="Purchase" class="menu-icon" />
+                <span class="menu-text">Purchase</span>
+            </div>
+
+            <div class="menu-item" onclick="navigateToRequest()">
+                <img src="../assets/images/img_mail.svg" alt="Request" class="menu-icon" />
+                <span class="menu-text">Request</span>
+            </div>
+
+            <img src="../assets/images/img_menu_separator.svg" alt="Separator" class="menu-separator" />
+
+            <div class="menu-item" onclick="navigateToAppSetting()">
+                <img src="../assets/images/img_settings.svg" alt="App Setting" class="menu-icon" />
+                <span class="menu-text">App Setting</span>
+            </div>
+
+            <div class="menu-item" onclick="navigateToProfile()">
+                <img src="../assets/images/img_edit_3.svg" alt="Profile" class="menu-icon" />
+                <span class="menu-text">Profile</span>
+            </div>
+
+            <img src="../assets/images/img_menu_separator.svg" alt="Separator" class="menu-separator" />
+        </div>
+    </nav> -->
+</div>
+</html>

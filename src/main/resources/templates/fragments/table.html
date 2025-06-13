@@ -1,0 +1,40 @@
+<div th:fragment="main-table" style="overflow-x: auto;">
+    <table>
+        <thead>
+            <tr>
+                <th:block th:each="map : ${listColumns}">
+                    <th>
+                        <a class="text-light"
+                            th:href="@{'/'+${pathServer}+'/'+(${#strings.equals(sort,'asc')} ? 'desc' : 'asc')+'/'+${map.key}+'/'+${currentPage}+'?column='+${columnName}+'&value='+${value}+'&size='+${sizePerPage}}">
+                            [[${map.value}]]
+                        </a>
+                    </th>
+                </th:block>
+                <th colspan="2">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <th:block th:each="entry : ${listContent}">
+                <tr>
+                    <th:block th:each="f : ${listHelper}">
+                        <td th:text="${entry.get(f)}"></td>
+                    </th:block>
+                </tr>
+            </th:block>
+            <td style="text-align: center">
+                <button type="button" th:data-title="'Edit'" th:data-server="'#server-results-edit'" Add commentMore
+                    actions onclick="funcModalsHandler(event)" th:data-url="'/'+${pathServer}+'/e/'+${entry.get('id')}"
+                    class="btn btn-primary" data-toggle="modal" data-target="#edit1">
+                    <i class="bi bi-pencil"></i>
+                </button>
+            </td>
+            <td style="text-align: center">
+                <button type="button" th:data-title="'Edit'" th:data-server="'#server-results-edit'" Add commentMore
+                    actions onclick="funcModalsHandler(event)" th:data-url="'/'+${pathServer}+'/e/'+${entry.get('id')}"
+                    class="btn btn-primary" data-toggle="modal" data-target="#edit1">
+                    <i class="bi bi-pencil"></i>
+                </button>
+            </td>
+        </tbody>
+    </table>
+</div>

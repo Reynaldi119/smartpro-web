@@ -397,7 +397,7 @@ body {
 
 /* Header */
 
-.header {
+/* .header {
     display: flex;
     background-color: beige;
     padding: 10px;
@@ -423,11 +423,11 @@ body {
     font-size: 24px;
     font-weight: bold;
     color: black;
-}
+} */
 
 /* Nav Bar */
 
-.nav {
+/* .nav {
     background-color: black;
     padding: 10px;
     margin-top: 0px;
@@ -446,11 +446,11 @@ body {
 
 .nav-item a:hover {
     color: cadetblue;
-}
+} */
 
 /* Konten */
 
-.konten {
+/* .konten {
     width: 80%;
     margin: auto;
 }
@@ -458,20 +458,19 @@ body {
 .konten h1 {
     font-size: 35px;
     color: black;
-}
+} */
 
 
 /* tabel */
-
-.tabel{
+.tabel {
     border-spacing: 4px;
 }
 
-.tabel-header{
+.tabel-header {
     background-color: beige;
 }
 
-.tabel-header th{
+.tabel-header th {
     padding: 10px;
     text-align: left;
 }
@@ -484,7 +483,7 @@ body {
     background-color: aliceblue;
 }
 
-.tabel-konten td{
+.tabel-konten td {
     padding: 10px;
 }
 

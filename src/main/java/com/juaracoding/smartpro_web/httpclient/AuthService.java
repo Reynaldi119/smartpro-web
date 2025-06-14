@@ -1,4 +1,4 @@
-package com.juaracoding.smartpro_web.interfaces;
+package com.juaracoding.smartpro_web.httpclient;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;

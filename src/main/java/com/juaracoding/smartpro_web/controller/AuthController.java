@@ -15,7 +15,7 @@ import org.springframework.web.context.request.WebRequest;
 
 import com.juaracoding.smartpro_web.config.OtherConfig;
 import com.juaracoding.smartpro_web.dto.validation.LoginDTO;
-import com.juaracoding.smartpro_web.interfaces.AuthService;
+import com.juaracoding.smartpro_web.httpclient.AuthService;
 import com.juaracoding.smartpro_web.security.BCryptImpl;
 import com.juaracoding.smartpro_web.util.GlobalFunction;
 
@@ -36,7 +36,6 @@ public class AuthController {
     ) {
         String strAnswer = loginDTO.getHiddenCaptcha();
         String decodePassword = new String(Base64.decode(loginDTO.getPassword()));
-        System.out.println("Password Decoded: " + decodePassword);
         GlobalFunction.matchingPattern(
             decodePassword, 
             "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[@_#\\-$])[\\w].{8,15}$",
@@ -50,7 +49,7 @@ public class AuthController {
         if(OtherConfig.getEnableAutomationTesting().equals("y")) {
             isValid = loginDTO.getCaptcha().equals(strAnswer);
         } else {
-            isValid = BCryptImpl.verifyHash(loginDTO.getCaptcha(),strAnswer);
+            isValid = BCryptImpl.verifyHash(loginDTO.getCaptcha(), strAnswer);
         }
 
         if(result.hasErrors() || !isValid) {
@@ -86,6 +85,6 @@ public class AuthController {
         request.setAttribute("password", loginDTO.getPassword(), 1);
         
         model.addAttribute("user", loginDTO);
-        return "index";
+        return "/pages/index";
     }
 }

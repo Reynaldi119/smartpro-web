@@ -78,7 +78,7 @@ public class AuthController {
         } catch (Exception e) {
             System.out.println("Error : " + e.getMessage());
             GlobalFunction.getCaptchaLogin(loginDTO);
-            return "auth/login";
+            return "auth-login";
         }
 
         request.setAttribute("jwt_token", tokenJwt, 1);

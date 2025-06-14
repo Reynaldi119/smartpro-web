@@ -10,6 +10,6 @@ public class AppSettingController {
 
     @GetMapping("/staff")
     public String getAllStaff() {
-        return "/app-setting/staff";
+        return "/pages/app-setting/staff";
     }
 }

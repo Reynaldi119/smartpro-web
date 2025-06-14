@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div class="border-bottom" th:fragment="header">
+    <!-- <nav class="navbar navbar-header navbar-expand navbar-light">
+        <a class="sidebar-toggler" href="#"><span class="navbar-toggler-icon"></span></a>
+        <div class="logo">SIPRO by SmartPro</div>
+        <div class="user-info">
+            <div class="user-details">
+                <div class="user-name">Reynaldi Tri Dewantoro</div>
+                <div class="user-role">Staff General Affair</div>
+            </div>
+            <div class="avatar">
+            </div>
+            <button type="button" class="btn btn-lg">
+                <i class="bi bi-gear-fill "></i>
+            </button>
+        </div>
+    </nav> -->
+    <nav class="navbar navbar-header navbar-expand navbar-light gap-4" th:fragment="header"><!--header-->
+        <a class="sidebar-toggler" href="#"><span class="navbar-toggler-icon"></span></a>
+        <button class="btn navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <span style="font-size: 1.5rem; font-weight: 500;">
+            SIPRO by SmartPro
+        </span>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav d-flex align-items-center navbar-light ms-auto">
+                <li class="dropdown">
+                    <a href="#" data-bs-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+                        <div class="d-flex flex-row gap-3">
+                            <div class="col-span-1 text-end">
+                                <div class="row">
+                                    <div class="d-none d-md-block d-lg-inline-block fw-semibold">Hi, {StaffName}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="d-none d-md-block d-lg-inline-block fw-light">{Role} - {Division}</div>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-center">
+                                <div class="avatar me-1">
+                                    <img th:src="@{/images/avatar/user.svg}" alt="" srcset="">
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end">
+                        <a class="dropdown-item" href="#"><i data-feather="tool"></i> Edit Profile</a>
+                        <!-- <a class="dropdown-item active" href="#"><i data-feather="mail"></i> Messages</a> -->
+                        <!-- <a class="dropdown-item" href="#"><i data-feather="settings"></i> Settings</a> -->
+                        <!-- <div class="dropdown-divider"></div> -->
+                        <a class="dropdown-item" href="#"><i data-feather="log-out"></i> Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+</html>

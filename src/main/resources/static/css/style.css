@@ -8,6 +8,10 @@ body {
     overflow-x: hidden;
 }
 
+.bd-sidebar {
+    grid-area: sidebar;
+}
+
 #footer {
     text-align: center;
     position: absolute;
@@ -45,7 +49,7 @@ body {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.header {
+.header-custom {
     /* position: absolute; */
     /* width: auto; */
     height: 100px;
@@ -54,7 +58,7 @@ body {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.header .logo {
+.header-custom .logo {
     position: absolute;
     left: 40px;
     top: 26px;
@@ -65,7 +69,7 @@ body {
     color: #000000;
 }
 
-.header .user-info {
+.header-custom .user-info {
     position: absolute;
     right: 27px;
     top: 24px;
@@ -74,11 +78,11 @@ body {
     gap: 23px;
 }
 
-.header .user-details {
+.header-custom .user-details {
     text-align: right;
 }
 
-.header .user-name {
+.header-custom .user-name {
     font-size: 14px;
     font-weight: 500;
     line-height: 17px;
@@ -86,14 +90,14 @@ body {
     margin-bottom: 1px;
 }
 
-.header .user-role {
+.header-custom .user-role {
     font-size: 16px;
     font-weight: 400;
     line-height: 20px;
     color: #999999;
 }
 
-.header .avatar {
+.header-custom .avatar {
     width: 40px;
     height: 40px;
     background-color: #eaddff;
@@ -103,7 +107,7 @@ body {
     justify-content: center;
 }
 
-.header .settings-icon {
+.header-custom .settings-icon {
     width: 24px;
     height: 24px;
     cursor: pointer;
@@ -376,10 +380,15 @@ body {
         height: auto;
     }
 
-    .sidebar {
-        width: 100%;
-        height: auto;
-        position: relative;
+    .bd-sidebar {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 5rem;
+        display: block !important;
+        height: calc(100vh - 6rem);
+        padding-left: .25rem;
+        margin-left: -.25rem;
+        overflow-y: auto;
     }
 
     .content-area {
@@ -397,28 +406,28 @@ body {
 
 /* Header */
 
-/* .header {
+/* .header-custom {
     display: flex;
     background-color: beige;
     padding: 10px;
 }
 
-.header-logo {
+.header-custom-logo {
     margin-top: auto;
     margin-bottom: auto;
 }
 
-.header-logo img {
+.header-custom-logo img {
     height: 100px;
 }
 
-.header-title {
+.header-custom-title {
     margin-top: auto;
     margin-bottom: auto;
     padding: 10px;
 }
 
-.header-title a {
+.header-custom-title a {
     text-decoration: none;
     font-size: 24px;
     font-weight: bold;

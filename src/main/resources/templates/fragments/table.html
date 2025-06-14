@@ -1,4 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <div th:fragment="main-table" style="overflow-x: auto;">
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th:block th:each="map : ${listColumns}">
+                    <th>
+                        <a class="text-light"
+                            th:href="@{'/'+${pathServer}+'/'+(${#strings.equals(sort,'asc')} ? 'desc' : 'asc')+'/'+${map.key}+'/'+${currentPage}+'?column='+${columnName}+'&value='+${value}+'&size='+${sizePerPage}}">
+                            [[${map.value}]]
+                        </a>
+                    </th>
+                </th:block>
+                <th colspan="2">Action</th>
+                <!-- <th><a class="sorted" sd:pagination-sort="username">Username</a></th>
+                <th><a class="sorted" sd:pagination-sort="firstName">First name</a></th>
+                <th>Last Name</th>
+                <th></th> -->
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="row : ${page}">
+                <th scope="row" th:text="${row.username}">Username</th>
+                <td th:text="${row.firstName}">Name</td>
+                <td th:text="${row.lastName}">Last Name</td>
+                <td><a href="#">edit</a></td>
+            </tr>
+        </tbody>
+    </table>
     <table>
         <thead>
             <tr>
@@ -38,3 +67,5 @@
         </tbody>
     </table>
 </div>
+
+</html>

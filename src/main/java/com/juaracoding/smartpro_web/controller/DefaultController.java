@@ -26,7 +26,7 @@ public class DefaultController {
             LoginDTO loginDTO = new LoginDTO();
             GlobalFunction.getCaptchaLogin(loginDTO);
             model.addAttribute("user", loginDTO);
-            return "/auth/login";
+            return "auth-login";
         }
 
         return "index";

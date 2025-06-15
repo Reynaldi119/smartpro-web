@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/main_layout}">
 <head>
-    <meta charset="UTF-8" />
     <title>App Setting - Division</title>
 </head>
 <body>
 
 <div class="main-content container-fluid" layout:fragment="main-content">
-    <p>Ini halaman Division</p>
+    <h2>Division</h2>
+    <span th:replace="~{/fragments/main_table :: main_table}"></span>
 </div>
 
 </body>

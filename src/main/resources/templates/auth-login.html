@@ -56,17 +56,20 @@
                             </div>
 
                             <!-- Start Of Captcha -->
-                            <div class="form-group position-relative">
+                            <div class="form-group position-relative has-icon-left">
                                 <label for="captcha">Enter Captcha</label>
                                 <div class="position-relative">
-                                    <div>
-                                        <div class="form-field d-flex align-items-center">
-                                            <span class="fas fa-key"></span>
-                                            <input type="hidden" th:field="*{hiddenCaptcha}" />
-                                            <input type="text" th:field="*{captcha}" class="form-control" />
-                                        </div>
-                                        <p id="errorCaptcha" class="error"></p>
+                                    <input type="text" th:field="*{captcha}" class="form-control" />
+                                    <div class="form-control-icon">
+                                        <i data-feather="refresh-cw"></i>
                                     </div>
+                                </div>
+                                <div>
+                                    <div class="form-field d-flex align-items-center">
+                                        <span class="fas fa-key"></span>
+                                        <input type="hidden" th:field="*{hiddenCaptcha}" />
+                                    </div>
+                                    <p id="errorCaptcha" class="error"></p>
                                 </div>
                                 <img th:src="*{'data:realCaptcha/jpg; base64,'+ realCaptcha}" style="width: 100%;">
                                 <ul class="error-ul">

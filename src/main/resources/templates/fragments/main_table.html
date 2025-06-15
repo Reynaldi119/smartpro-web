@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="main_table" style="overflow-x: auto;">
+    <table class="table table-striped table-hover" id="main-table">
+        <thead>
+            <tr>
+                <th:block th:each="map : ${listColumns}">
+                    <th style="text-align: center;">
+                        [[${map.value}]]
+                    </th>
+                </th:block>
+                <th colspan="2" style="text-align: center;">ACTION</th>
+            </tr>
+        </thead>
+        <tbody>
+            <th:block th:each="entry : ${listContent}">
+                <tr>
+                    <th:block th:each="f : ${listHelper}">
+                        <td th:text="${entry.get(f)}"></td>
+                    </th:block>
+                    <td style="text-align: center">
+                        <button type="button" th:data-title="'Edit'" 
+                            th:data-server="'#server-results-edit'"
+                            actions onclick="funcModalsHandler(event)" 
+                            th:data-url="'/'+ ${pathServer} + '/' + ${entry.get('id')}"
+                            class="btn btn-primary" data-toggle="modal" data-target="#edit1">
+                            <i data-feather="edit" width="20"></i>
+                        </button>
+                        <button type="button" th:data-title="'Edit'" 
+                            th:data-server="'#server-results-edit'"
+                            actions onclick="funcModalsHandler(event)" 
+                            th:data-url="'/' + ${pathServer} + '/' + ${entry.get('id')}"
+                            class="btn btn-primary" data-toggle="modal" data-target="#edit1">
+                            <i data-feather="eye" width="20"></i>
+                        </button>
+                    </td>
+                </tr>
+            </th:block>
+        </tbody>
+    </table>
+</div>
+
+</html>

@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,7 @@ import com.juaracoding.smartpro_web.httpclient.AuthService;
 import com.juaracoding.smartpro_web.security.BCryptImpl;
 import com.juaracoding.smartpro_web.util.GlobalFunction;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
 @Controller
@@ -26,6 +28,14 @@ import jakarta.validation.Valid;
 public class AuthController {
     @Autowired
     private AuthService authService;
+
+    @GetMapping("/login")
+    public String redirectToLogin(Model model) {
+        LoginDTO loginDTO = new LoginDTO();
+        model.addAttribute("user", loginDTO);
+        GlobalFunction.getCaptchaLogin(loginDTO);
+        return "auth-login";
+    }
 
     @PostMapping("/login")
     public String login (
@@ -57,7 +67,7 @@ public class AuthController {
                 model.addAttribute("captchaMessage", "Invalid Captcha");
             }
             GlobalFunction.getCaptchaLogin(loginDTO);
-            return "index";
+            return "auth-login";
         }
         
         loginDTO.setPassword(decodePassword);
@@ -72,8 +82,12 @@ public class AuthController {
         try { 
             response = authService.login(loginDTO);
             Map<String, Object> responseMap = (Map<String, Object>) response.getBody();
-            Map<String, Object> dataMap = (Map<String, Object>) responseMap.get("data");
-            tokenJwt = (String) dataMap.get("token");
+            Map<String, Object> mapData = (Map<String, Object>) responseMap.get("data");
+
+            // List<Map<String,Object>> listMenu = (List<Map<String, Object>>) mapData.get("menu");
+            // menuNavBar = new GenerateStringMenu().stringMenu(listMenu);
+            
+            tokenJwt = (String) mapData.get("token");
         } catch (Exception e) {
             System.out.println("Error : " + e.getMessage());
             GlobalFunction.getCaptchaLogin(loginDTO);
@@ -83,8 +97,15 @@ public class AuthController {
         request.setAttribute("jwt_token", tokenJwt, 1);
         request.setAttribute("username", loginDTO.getUsername(), 1);
         request.setAttribute("password", loginDTO.getPassword(), 1);
+        request.setAttribute("menu_navbar", menuNavBar, 1);
         
         model.addAttribute("user", loginDTO);
-        return "/pages/index";
+        return "redirect:/";
+    }
+
+    @GetMapping("/logout")
+    public String destroySession(HttpServletRequest request){
+        request.getSession().invalidate();
+        return "auth-login";
     }
 }

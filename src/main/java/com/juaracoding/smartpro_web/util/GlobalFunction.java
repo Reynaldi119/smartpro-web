@@ -53,8 +53,11 @@ public class GlobalFunction {
 
     public static void setGlobalAttribute(Model model, WebRequest request, String pageName) {
         model.addAttribute("username", request.getAttribute("username", 1).toString());
-        // model.addAttribute("menu_navbar", request.getAttribute("menu_navbar", 1).toString());
-        // model.addAttribute("page_name", pageName);
+        model.addAttribute("staff_name", request.getAttribute("staff_name", 1).toString());
+        model.addAttribute("role_name", request.getAttribute("role_name", 1).toString());
+        model.addAttribute("division_name", request.getAttribute("division_name", 1).toString());
+        model.addAttribute("menu_navbar", request.getAttribute("menu_navbar", 1).toString());
+        model.addAttribute("page_name", pageName);
     }
 
     public static void setPagingElement(Model model, Map<String, Object> mapData, String pathServer, Map<Object, Object> filterColumn) {

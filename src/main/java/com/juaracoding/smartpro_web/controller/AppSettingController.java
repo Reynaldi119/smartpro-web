@@ -23,14 +23,12 @@ public class AppSettingController {
     private DivisionService divisionService;
 
     // Staff
-
     @GetMapping("/staff")
     public String getStaffListPage() {
         return "/pages/app-setting/staff/index";
     }
 
     // Division
-
     @GetMapping("/division")
     public String getDivisionListPage(Model model, WebRequest request) {
         // get data from API
@@ -39,6 +37,7 @@ public class AppSettingController {
 
         try {
             responseObj = divisionService.findAll(jwt);
+            System.out.println(responseObj.getHeaders().toString());
             Map<String, Object> response = (Map<String, Object>) responseObj.getBody();
             Map<String, Object> mapData = (Map<String, Object>) response.get("data");
 

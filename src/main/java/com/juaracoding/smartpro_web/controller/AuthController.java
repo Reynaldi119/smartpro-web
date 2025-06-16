@@ -1,5 +1,6 @@
 package com.juaracoding.smartpro_web.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.bouncycastle.util.encoders.Base64;
@@ -17,7 +18,9 @@ import org.springframework.web.context.request.WebRequest;
 import com.juaracoding.smartpro_web.config.OtherConfig;
 import com.juaracoding.smartpro_web.dto.validation.LoginDTO;
 import com.juaracoding.smartpro_web.httpclient.AuthService;
+import com.juaracoding.smartpro_web.httpclient.StaffService;
 import com.juaracoding.smartpro_web.security.BCryptImpl;
+import com.juaracoding.smartpro_web.util.GenerateStringMenu;
 import com.juaracoding.smartpro_web.util.GlobalFunction;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -28,6 +31,9 @@ import jakarta.validation.Valid;
 public class AuthController {
     @Autowired
     private AuthService authService;
+
+    @Autowired
+    private StaffService staffService;
 
     @GetMapping("/login")
     public String redirectToLogin(Model model) {
@@ -78,14 +84,16 @@ public class AuthController {
         ResponseEntity<Object> response = null;
         String tokenJwt = "";
         String menuNavBar = "";
+        Long staffId = 0L;
 
         try { 
             response = authService.login(loginDTO);
             Map<String, Object> responseMap = (Map<String, Object>) response.getBody();
             Map<String, Object> mapData = (Map<String, Object>) responseMap.get("data");
 
-            // List<Map<String,Object>> listMenu = (List<Map<String, Object>>) mapData.get("menu");
-            // menuNavBar = new GenerateStringMenu().stringMenu(listMenu);
+            List<Map<String,Object>> listMenu = (List<Map<String, Object>>) mapData.get("menu");
+            staffId = ((Number) mapData.get("staffId")).longValue();
+            menuNavBar = new GenerateStringMenu().stringMenu(listMenu);
             
             tokenJwt = (String) mapData.get("token");
         } catch (Exception e) {
@@ -94,9 +102,18 @@ public class AuthController {
             return "auth-login";
         }
 
+        ResponseEntity<Object> responseGetStaff = null;
+        responseGetStaff = staffService.findById("Bearer " + tokenJwt, staffId);
+        Map<String, Object> mapStaff = (Map<String, Object>) ((Map<String, Object>) responseGetStaff.getBody()).get("data");
+        Map<String, Object> mapStaffRole = (Map<String, Object>) mapStaff.get("role");
+        Map<String, Object> mapStaffDivision = (Map<String, Object>) mapStaff.get("division");
+
         request.setAttribute("jwt_token", tokenJwt, 1);
         request.setAttribute("username", loginDTO.getUsername(), 1);
         request.setAttribute("password", loginDTO.getPassword(), 1);
+        request.setAttribute("staff_name", mapStaff.get("full-name"), 1);
+        request.setAttribute("role_name", mapStaffRole.get("name"), 1);
+        request.setAttribute("division_name", mapStaffDivision.get("name"), 1);
         request.setAttribute("menu_navbar", menuNavBar, 1);
         
         model.addAttribute("user", loginDTO);

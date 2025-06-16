@@ -1,21 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<div class="border-bottom" th:fragment="header">
-    <!-- <nav class="navbar navbar-header navbar-expand navbar-light">
-        <a class="sidebar-toggler" href="#"><span class="navbar-toggler-icon"></span></a>
-        <div class="logo">SIPRO by SmartPro</div>
-        <div class="user-info">
-            <div class="user-details">
-                <div class="user-name">Reynaldi Tri Dewantoro</div>
-                <div class="user-role">Staff General Affair</div>
-            </div>
-            <div class="avatar">
-            </div>
-            <button type="button" class="btn btn-lg">
-                <i class="bi bi-gear-fill "></i>
-            </button>
-        </div>
-    </nav> -->
+<div class="border-bottom" th:fragment="header">    
     <nav class="navbar navbar-header navbar-expand navbar-light gap-4" th:fragment="header"><!--header-->
         <a class="sidebar-toggler" href="#"><span class="navbar-toggler-icon"></span></a>
         <button class="btn navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -33,10 +18,16 @@
                         <div class="d-flex flex-row gap-3">
                             <div class="col-span-1 text-end">
                                 <div class="row">
-                                    <div class="d-none d-md-block d-lg-inline-block fw-semibold">Hi, {StaffName}</div>
+                                    <div class="d-none d-md-block d-lg-inline-block fw-semibold">Hi, 
+                                        <span th:text="${staff_name}"></span>
+                                    </div>
                                 </div>
                                 <div class="row">
-                                    <div class="d-none d-md-block d-lg-inline-block fw-light">{Role} - {Division}</div>
+                                    <div class="d-none d-md-block d-lg-inline-block fw-light">
+                                        <th:block th:text="${role_name}"></th:block>
+                                         - 
+                                        <th:block th:text="${division_name}"></th:block>
+                                    </div>
                                 </div>
                             </div>
                             <div class="d-flex align-items-center justify-content-center">

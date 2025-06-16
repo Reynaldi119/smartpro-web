@@ -10,7 +10,4 @@ public interface DivisionService {
     
     @GetMapping
     public ResponseEntity<Object> findAll(@RequestHeader("Authorization") String token);
-
-    @GetMapping
-    public ResponseEntity<Object> findById(Long id);
 }

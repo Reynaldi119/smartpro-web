@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestHeader;
 @FeignClient(name = "staff-service", url = "http://localhost:8085/staff")
 public interface StaffService {
     
+    @GetMapping
+    public ResponseEntity<Object> findAll(@RequestHeader("Authorization") String token);
+
     @GetMapping("/{id}")
     public ResponseEntity<Object> findById(
         @RequestHeader("Authorization") String token,

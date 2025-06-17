@@ -1,58 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{layouts/main_layout}">
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/main_layout}">
 <head>
-    <meta charset="UTF-8">
     <title>App Setting - Staff</title>
 </head>
-
 <body>
 
 <div class="main-content container-fluid" layout:fragment="main-content">
-    <h1>Staff List</h1>
-
-    <table>
-        <tr class="tabel-header">
-            <th>Nama Lengkap</th>
-            <th>Username</th>
-            <th>Divisi</th>
-            <th>No.Telp</th>
-            <th>Status</th>
-        </tr>
-
-        <tr class="tabel-konten">
-            <td>Riyan Gunawan</td>
-            <td>riyan.gunawan</td>
-            <td>Procurement</td>
-            <td>081912345678</td>
-            <td>
-                <button type="submit" class="staff">status</button>
-            </td>
-        </tr>
-
-        <tr class="tabel-konten tabel-genap">
-            <td>Reynaldi Tri Dewantoro</td>
-            <td>reynaldi.tri</td>
-            <td>General Affair</td>
-            <td>082882188232</td>
-            <td>
-                <button type="submit" class="staff">status</button>
-            </td>
-        </tr>
-
-        <tr class="tabel-konten">
-            <td>Alfin Al Khoiri</td>
-            <td>alfin.khoiri</td>
-            <td>Finance</td>
-            <td>081238237823</td>
-            <td>
-                <button type="submit" class="staff">status</button>
-            </td>
-        </tr>
-    </table>
+    <h2 th:text="${page_name}"></h2>
+    <span th:replace="~{/fragments/main_table :: main_table}"></span>
 </div>
 
 </body>
-
 </html>

@@ -7,7 +7,29 @@
 <body>
 
 <div class="main-content container-fluid" layout:fragment="main-content">
-    <p>Ini halaman Division Edit</p>
+    <form id="form-edit-division" th:object="${division}" method="post" th:action="@{/app-setting/division/{id} (id = ${id})}">
+        <div class="form-group position-relative">
+            <label for="username">Division ID</label>
+            <div class="position-relative">
+                <input type="text" class="form-control" id="id" th:field="*{id}" disabled>
+            </div>
+            <ul class="error-ul">
+                <li th:each="err : ${#fields.errors('id')}" th:text="${err}" class="error">
+                </li>
+            </ul>
+        </div>
+        <div class="form-group position-relative">
+            <label for="username">Division Name</label>
+            <div class="position-relative">
+                <input type="text" class="form-control" id="name" th:field="*{name}">
+            </div>
+            <ul class="error-ul">
+                <li th:each="err : ${#fields.errors('name')}" th:text="${err}" class="error">
+                </li>
+            </ul>
+        </div>
+        
+    </form>
 </div>
 
 </body>

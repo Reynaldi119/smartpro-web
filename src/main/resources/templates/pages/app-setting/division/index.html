@@ -6,7 +6,7 @@
 <body>
 
 <div class="main-content container-fluid" layout:fragment="main-content">
-    <h2>Division</h2>
+    <h2 th:text="${page_name}"></h2>
     <span th:replace="~{/fragments/main_table :: main_table}"></span>
 </div>
 

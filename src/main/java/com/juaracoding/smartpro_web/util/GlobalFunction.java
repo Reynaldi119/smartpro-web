@@ -43,21 +43,38 @@ public class GlobalFunction {
         }
     }
 
-    public static String tokenCheck(Model model, WebRequest request) {
-        Object tokenJwt = request.getAttribute("jwt_token", 1);
-        if(tokenJwt == null){
+    /***
+     * Set global attribute (like values in header, menus in sidebar) and check for token
+     * @param model
+     * @param request
+     * @param pageName
+     * @return token that has been stored in session
+     */
+
+    public static String setGlobalAttributeAndTokenCheck(Model model, WebRequest request, String pageName) {
+        Object username = request.getAttribute("username", 1);
+        Object menuNavbar = request.getAttribute("menu_navbar", 1);
+        Object urlImg = request.getAttribute("profile_image_url", 1);
+        Object token = request.getAttribute("jwt_token", 1);
+        Object staff = request.getAttribute("staff_obj", 1);
+        
+        if (token == null) {
             return null;
         }
-        return "Bearer " + tokenJwt;
-    } 
 
-    public static void setGlobalAttribute(Model model, WebRequest request, String pageName) {
-        model.addAttribute("username", request.getAttribute("username", 1).toString());
-        model.addAttribute("staff_name", request.getAttribute("staff_name", 1).toString());
-        model.addAttribute("role_name", request.getAttribute("role_name", 1).toString());
-        model.addAttribute("division_name", request.getAttribute("division_name", 1).toString());
-        model.addAttribute("menu_navbar", request.getAttribute("menu_navbar", 1).toString());
+        Map<String, Object> mapStaff = (Map<String, Object>) staff;
+        Map<String, Object> mapRole = (Map<String, Object>) mapStaff.get("role");
+        Map<String, Object> mapDivision = (Map<String, Object>) mapStaff.get("division");
+
+        model.addAttribute("username", username);
+        model.addAttribute("menu_navbar", menuNavbar);
+        model.addAttribute("profile_image_url", urlImg);
+        model.addAttribute("staff_name", mapStaff.get("full-name"));
+        model.addAttribute("role_name", mapRole.get("name"));
+        model.addAttribute("division_name", mapDivision.get("name"));
         model.addAttribute("page_name", pageName);
+
+        return "Bearer " + token;
     }
 
     public static void setPagingElement(Model model, Map<String, Object> mapData, String pathServer, Map<Object, Object> filterColumn) {

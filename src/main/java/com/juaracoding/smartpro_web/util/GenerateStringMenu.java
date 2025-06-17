@@ -24,7 +24,7 @@ public class GenerateStringMenu {
             else {
                 // parsing parent menu
                 sBuilder
-                    .append("<li class=\"sidebar-item has-sub\"><a href=\"\" class=\"sidebar-link\">")
+                    .append("<li class=\"sidebar-item has-sub\"><a href=\"#\" class=\"sidebar-link\">")
                     .append("<i data-feather=\"").append(parentMenu.get("featherIconTag").toString()).append("\" width=\"20\"></i>")
                     .append("<span>").append(parentMenu.get("menuName").toString()).append("</span>")
                     .append("</a>")

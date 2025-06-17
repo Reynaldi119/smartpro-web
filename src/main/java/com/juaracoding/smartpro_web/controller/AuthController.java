@@ -105,15 +105,11 @@ public class AuthController {
         ResponseEntity<Object> responseGetStaff = null;
         responseGetStaff = staffService.findById("Bearer " + tokenJwt, staffId);
         Map<String, Object> mapStaff = (Map<String, Object>) ((Map<String, Object>) responseGetStaff.getBody()).get("data");
-        Map<String, Object> mapStaffRole = (Map<String, Object>) mapStaff.get("role");
-        Map<String, Object> mapStaffDivision = (Map<String, Object>) mapStaff.get("division");
 
         request.setAttribute("jwt_token", tokenJwt, 1);
         request.setAttribute("username", loginDTO.getUsername(), 1);
         request.setAttribute("password", loginDTO.getPassword(), 1);
-        request.setAttribute("staff_name", mapStaff.get("full-name"), 1);
-        request.setAttribute("role_name", mapStaffRole.get("name"), 1);
-        request.setAttribute("division_name", mapStaffDivision.get("name"), 1);
+        request.setAttribute("staff_obj", mapStaff, 1);
         request.setAttribute("menu_navbar", menuNavBar, 1);
         
         model.addAttribute("user", loginDTO);
@@ -123,6 +119,6 @@ public class AuthController {
     @GetMapping("/logout")
     public String destroySession(HttpServletRequest request){
         request.getSession().invalidate();
-        return "auth-login";
+        return "redirect:/auth/login";
     }
 }

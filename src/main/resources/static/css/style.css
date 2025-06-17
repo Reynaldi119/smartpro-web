@@ -499,3 +499,139 @@ body {
 .tabel-konten:hover {
     background-color: bisque;
 }
+
+/* Form */
+
+.form-staff{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.form-staff label {
+    display: block;
+    font-size: 20px;
+    color: rgb(135, 135, 135);
+}
+
+.form-staff input{
+    display: block;
+    margin-top: 10px;
+    width: 50%;
+}
+
+.form-staff textarea{
+    display: block;
+    margin-top: 10px;
+    height: 200px;
+    width: 60%;
+}
+
+.btn{
+    width: 100px;
+    height: 30px;
+    font-size: 20px;
+    font-weight: bold;
+    color: aliceblue;
+    background-color: blue;
+    border: 0px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.btn_1{
+    width: 100px;
+    height: 30px;
+    font-size: 20px;
+    font-weight: bold;
+    color: aliceblue;
+    background-color: grey;
+    border: 0px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.btn:hover{
+    background-color: green;
+}
+
+.btn:active{
+    background-color: red;
+}
+
+.btn_1:hover{
+    background-color: black;
+}
+
+.btn_1:active{
+    background-color: red;
+}
+
+/* Form-Profile */
+
+.form-picture{
+    display:url
+}
+
+.form-profile{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.form-profile label {
+    display: block;
+    font-size: 20px;
+    color: rgb(135, 135, 135);
+}
+
+.form-profile input{
+    display: block;
+    margin-top: 10px;
+    width: 50%;
+}
+
+.form-profile textarea{
+    display: block;
+    margin-top: 10px;
+    height: 200px;
+    width: 60%;
+}
+
+.btn{
+    width: 100px;
+    height: 30px;
+    font-size: 20px;
+    font-weight: bold;
+    color: aliceblue;
+    background-color: blue;
+    border: 0px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.btn_1{
+    width: 100px;
+    height: 30px;
+    font-size: 20px;
+    font-weight: bold;
+    color: aliceblue;
+    background-color: grey;
+    border: 0px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.btn:hover{
+    background-color: green;
+}
+
+.btn:active{
+    background-color: red;
+}
+
+.btn_1:hover{
+    background-color: black;
+}
+
+.btn_1:active{
+    background-color: red;
+}

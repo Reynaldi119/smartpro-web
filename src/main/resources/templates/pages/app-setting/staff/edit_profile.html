@@ -3,44 +3,49 @@
       layout:decorate="~{layouts/main_layout}">
 <head>
     <meta charset="UTF-8" />
-    <title>Edit Staff</title>
+    <title>Edit profile</title>
+
 </head>
 <body>
-    <div class="edit-content container-fluid" layout:fragment="edit-content">
-        <h1>Edit Staff</h1>
+    <div class="main-content container-fluid" layout:fragment="main-content">
+        <h1>Edit Profile</h1>
 
         <form>
 
-            <div class="form-staff">
+            <div class="form-profile">
+                <label for="data_picture">Picture
+                    <input type="url" alt="img" id="imageURL" for="data_picture">
+                </label>
+                <input type="file" class="img" id="data_picture" for="data_picture" >
+            </div>
+
+            <div class="form-profile">
                 <label for="data_fullname">Fullname</label>
                 <input type="text" id="data_fullname" for="data_fullname">
             </div>
 
-            <div class="form-staff">
+            <div class="form-profile">
                 <label for="data_phoneNumber">Phone Number</label>
                 <input type="number" id="data_phoneNumber" for="data_phoneNumber">
             </div>
 
-            <div class="form-staff">
+            <div class="form-profile">
                 <label for="data_username">Username</label>
                 <input type="text" id="data_username" for="data_username">
             </div>
 
-            <div class="form-staff">
+            <div class="form-profile">
                 <label for="data_password">Password</label>
                 <input type="password" id="data_password" for="data_password">
             </div>
 
-            <div class="form-staff">
+            <div class="form-profile">
                 <label for="data_division">Division</label>
                 <input type="text" id="data_division" for="data_division">
             </div>
 
             <button type="submit" class="btn">Save</button>
             <button type="submit" class="btn_1">Cancel</button>
-
-
-
 
 
         </form>

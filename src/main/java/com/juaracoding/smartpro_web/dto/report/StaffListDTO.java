@@ -8,7 +8,7 @@ public class StaffListDTO {
 
     private String phoneNumber;
 
-    private Long divisionId;
+    private String username;
 
     public Long getId() {
         return id;
@@ -34,11 +34,13 @@ public class StaffListDTO {
         this.phoneNumber = phoneNumber;
     }
 
-    public Long getDivisionId() {
-        return divisionId;
+    public String getUsername() {
+        return username;
     }
 
-    public void setDivisionId(Long divisionId) {
-        this.divisionId = divisionId;
+    public void setUsername(String username) {
+        this.username = username;
     }
+
+
 }

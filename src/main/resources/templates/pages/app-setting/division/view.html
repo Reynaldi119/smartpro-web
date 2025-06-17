@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/main_layout}">
 <head>
     <meta charset="UTF-8" />
-    <title>Edit Division</title>
+    <title>Division Detail</title>
 </head>
 <body>
 
@@ -22,7 +22,7 @@
         <div class="form-group position-relative">
             <label for="username">Division Name</label>
             <div class="position-relative">
-                <input type="text" class="form-control" id="name" th:field="*{name}">
+                <input type="text" class="form-control" id="name" th:field="*{name}" disabled>
             </div>
             <ul class="error-ul">
                 <li th:each="err : ${#fields.errors('name')}" th:text="${err}" class="error">
@@ -39,9 +39,8 @@
                 </li>
             </ul>
         </div>
-        <div class="clearfix d-flex flex-row gap-1 justify-content-end">
-            <button id="btn-login" class="btn btn-primary float-end" type="submit">Save</button>
-            <a id="btn-login" class="btn btn-secondary float-end" th:href="@{/app-setting/division}">Cancel</a>
+        <div class="clearfix">
+            <a id="btn-login" class="btn btn-secondary float-end" th:href="@{/app-setting/division}">Back</a>
         </div>
     </form>
 </div>

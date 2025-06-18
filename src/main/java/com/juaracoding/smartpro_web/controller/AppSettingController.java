@@ -3,6 +3,9 @@ package com.juaracoding.smartpro_web.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.juaracoding.smartpro_web.dto.response.ResProfileDTO;
+import com.juaracoding.smartpro_web.dto.response.ResStaffDTO;
+import com.juaracoding.smartpro_web.dto.validation.EditStaffDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -27,6 +30,7 @@ import com.juaracoding.smartpro_web.httpclient.StaffService;
 import com.juaracoding.smartpro_web.util.GlobalFunction;
 
 import jakarta.validation.Valid;
+import org.springframework.web.multipart.MultipartFile;
 
 
 @Controller
@@ -61,7 +65,7 @@ public class AppSettingController {
             Map<String, Object> response = (Map<String, Object>) responseObj.getBody();
             Map<String, Object> mapData = (Map<String, Object>) response.get("data");
 
-            GlobalFunction.setPagingElement(model, mapData, "staff", new HashMap<>());
+            GlobalFunction.setPagingElement(model, mapData, "app-setting/staff", new HashMap<>());
 
         } catch (Exception e) {
             System.out.println("Errornya ini: " + e.getMessage());
@@ -70,6 +74,117 @@ public class AppSettingController {
 
         return "/pages/app-setting/staff/index";
     }
+
+    @GetMapping("/staff/{id}")
+    public String getStaff(@PathVariable Long id, @RequestParam Boolean isEdit, Model model, WebRequest request) {
+        ResponseEntity<Object> responseObj = null;
+        String jwtToken = "";
+
+        try {
+            if (isEdit) {
+                jwtToken = GlobalFunction.setGlobalAttributeAndTokenCheck(model, request, "Staff");
+
+                responseObj = staffService.findById(jwtToken, id);
+
+                Map<String, Object> response = (Map<String, Object>) responseObj.getBody();
+                Map<String, Object> mapData = (Map<String, Object>) response.get("data");
+
+                model.addAttribute("staff", objectMapper.convertValue(mapData, ResStaffDTO.class));
+
+                return "/pages/app-setting/staff/edit";
+            } else {
+                jwtToken = GlobalFunction.setGlobalAttributeAndTokenCheck(model, request, "Staff");
+
+                responseObj = divisionService.findById(jwtToken, id);
+
+                Map<String, Object> response = (Map<String, Object>) responseObj.getBody();
+                Map<String, Object> mapData = (Map<String, Object>) response.get("data");
+
+                model.addAttribute("staff", objectMapper.convertValue(mapData, ResStaffDTO.class));
+
+                return "/pages/app-setting/staff/view";
+            }
+        } catch (Exception e) {
+            System.out.println("Error : " + e.getMessage());
+            return "redirect:/";
+        }
+    }
+
+    @GetMapping("/staff/profile/{id}")
+    public String staffEditProfile(@PathVariable Long id, Model model, WebRequest request) {
+        ResponseEntity<Object> responseObj = null;
+        String jwtToken = "";
+
+        try {
+            jwtToken = GlobalFunction.setGlobalAttributeAndTokenCheck(model, request, "Staff");
+
+            responseObj = staffService.findById(jwtToken, id);
+
+            Map<String, Object> response = (Map<String, Object>) responseObj.getBody();
+            Map<String, Object> mapData = (Map<String, Object>) response.get("data");
+
+            model.addAttribute("staff", objectMapper.convertValue(mapData, ResProfileDTO.class));
+
+            return "/pages/app-setting/staff/edit_profile";
+        } catch (Exception e) {
+            System.out.println("Error : " + e.getMessage());
+            return "redirect:/";
+        }
+    }
+
+    @PostMapping("/staff/{id}")
+    public String updateStaff(
+            @ModelAttribute("staff") @Valid EditStaffDTO editStaffDTO,
+            @PathVariable Long id,
+            BindingResult bindingResult,
+            Model model,
+            WebRequest request
+    ) {
+        //TODO: process POST request
+        ResponseEntity<Object> responseObj = null;
+        String jwtToken = "";
+
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("staff", editStaffDTO);
+            model.addAttribute("id", id);
+            return "redirect:/";
+        }
+
+        try {
+            jwtToken = GlobalFunction.setGlobalAttributeAndTokenCheck(model, request, "Staff");
+            responseObj = staffService.update(jwtToken, editStaffDTO, id);
+        } catch (Exception e) {
+            System.out.println("Error : " + e.getMessage());
+            return "redirect:/";
+        }
+
+        return "redirect:/app-setting/staff";
+    }
+
+//    @PostMapping("/staff/{id}")
+//    public String uploadStaffImage(
+//            Model model,
+//            @PathVariable String username,
+//            @RequestParam MultipartFile file, WebRequest request) {
+//        ResponseEntity<Object> response = null;
+//        String jwt = GlobalFunction.setGlobalAttributeAndTokenCheck(model, request,"Edit Profile");
+//        if (jwt.equals("redirect:/")) {
+//            return jwt;
+//        }
+//        try {
+//            response = staffService.uploadImage(jwt,username, file);
+//        } catch (Exception e) {
+//            System.out.println(e.getMessage());
+//            return "redirect:/";
+//        }
+//        Map<String, Object> data = (Map<String, Object>) response.getBody();
+//        String urlImg = data.get("url-img").toString();
+////        model.addAttribute("pesan","Data Berhasil Diubah");
+//        request.setAttribute("URL_IMG", urlImg, 1);
+//        GlobalFunction.setGlobalAttributeAndTokenCheck(model,request,"HOME");
+//        model.addAttribute("URL_IMG",urlImg);
+//        return "/pages/app-setting/staff/index";
+//    }
 
     // Division
     @GetMapping("/division")

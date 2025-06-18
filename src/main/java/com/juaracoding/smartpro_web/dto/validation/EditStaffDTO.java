@@ -1,11 +1,21 @@
 package com.juaracoding.smartpro_web.dto.validation;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.juaracoding.smartpro_web.dto.relation.SelectDivisionDTO;
+import com.juaracoding.smartpro_web.dto.relation.RelDivisionDTO;
+import com.juaracoding.smartpro_web.dto.relation.RelRoleDTO;
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 
 public class EditStaffDTO {
+
+    private String photoProfileUrl;
+
+    @Pattern(regexp = "^[a-zA-Z\\s]{4,70}$",
+            message = "Invalid format! Only alphabets and spaces are allowed, min 4 to 70 characters")
+    @JsonProperty("full-name")
+    private String fullName;
+
     @Pattern(regexp = "^(62|\\+62|0)8[0-9]{9,13}$",
             message = "Invalid phone number format! Allowed format: min 9 max 13 digits after number 8, for example: (0/62/+62)81111111")
     @JsonProperty("phone-number")
@@ -20,9 +30,40 @@ public class EditStaffDTO {
     private String password;
 
     @NotNull(message = "Division should not be null!")
-    private SelectDivisionDTO division;
+    private RelDivisionDTO division;
+
+    @NotNull(message = "Role should not be null!")
+    private RelRoleDTO role;
 
     // setters getters
+
+
+
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public RelDivisionDTO getDivision() {
+        return division;
+    }
+
+    public void setDivision(RelDivisionDTO division) {
+        this.division = division;
+    }
+
+    public RelRoleDTO getRole() {
+        return role;
+    }
+
+    public void setRole(RelRoleDTO role) {
+        this.role = role;
+    }
+
     public String getPhoneNumber() {
         return phoneNumber;
     }

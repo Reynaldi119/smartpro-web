@@ -2,7 +2,7 @@ package com.juaracoding.smartpro_web.dto.response;
 
 import java.time.LocalDateTime;
 
-public class DivisionDTO {
+public class RoleDTO {
     private Long id;
     private String name;
 

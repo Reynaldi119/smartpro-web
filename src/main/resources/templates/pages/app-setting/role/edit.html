@@ -2,15 +2,15 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/main_layout}">
 <head>
     <meta charset="UTF-8" />
-    <title>Edit Division</title>
+    <title>Edit Role</title>
 </head>
 <body>
 
 <div class="main-content container-fluid" layout:fragment="main-content">
     <h2 th:text="${page_name}"></h2>
-    <form id="form-edit-division" th:object="${division}" method="post" th:action="@{/app-setting/division/{id} (id = ${id})}">
+    <form id="form-edit-role" th:object="${role}" method="post" th:action="@{/app-setting/role/{id} (id = ${id})}">
         <div class="form-group position-relative">
-            <label for="username">Division ID</label>
+            <label for="username">Role ID</label>
             <div class="position-relative">
                 <input type="text" class="form-control" id="id" th:field="*{id}" disabled>
             </div>
@@ -20,7 +20,7 @@
             </ul>
         </div>
         <div class="form-group position-relative">
-            <label for="username">Division Name</label>
+            <label for="username">Role Name</label>
             <div class="position-relative">
                 <input type="text" class="form-control" id="name" th:field="*{name}">
             </div>
@@ -40,8 +40,8 @@
             </ul>
         </div>
         <div class="clearfix d-flex flex-row gap-1 justify-content-end">
-            <button class="btn btn-primary float-end" type="submit">Save</button>
-            <a class="btn btn-secondary float-end" th:href="@{/app-setting/division}">Cancel</a>
+            <button id="btn-login" class="btn btn-primary float-end" type="submit">Save</button>
+            <a id="btn-login" class="btn btn-secondary float-end" th:href="@{/app-setting/role}">Cancel</a>
         </div>
     </form>
 </div>

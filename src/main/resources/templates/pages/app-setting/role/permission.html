@@ -1,0 +1,21 @@
+!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/main_layout}">
+<head>
+    <title>Access Permission</title>
+</head>
+<body>
+
+<div class="main-content container-fluid" layout:fragment="main-content">
+    <h2 th:text="${page_name}"></h2>
+    <form id="form-edit-permission" th:object="${permission}" method="post" th:action="@{/app-setting/role/permission/{id} (id = ${id})}">
+        <div class="form-group position-relative">
+        <label>Choose Role: </label>
+		<select id="listRole" name="listRole" th:field="*{listRole}" size="10" multiple="multiple">
+			<option th:each="roleList: ${x}" th:value="${roleList.id}" th:text="${roleList.name}"></option>
+		</select>
+    </div>
+    </form>
+</div>
+
+</body>
+</html>

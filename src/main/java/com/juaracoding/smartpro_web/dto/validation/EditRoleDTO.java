@@ -3,7 +3,7 @@ package com.juaracoding.smartpro_web.dto.validation;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 
-public class EditDivisionDTO {
+public class EditRoleDTO {
 
     @NotNull
     private Long id;

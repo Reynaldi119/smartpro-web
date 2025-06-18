@@ -70,6 +70,7 @@ public class GlobalFunction {
         model.addAttribute("menu_navbar", menuNavbar);
         model.addAttribute("profile_image_url", urlImg);
         model.addAttribute("staff_name", mapStaff.get("full-name"));
+        model.addAttribute("staff_id", mapStaff.get("id"));
         model.addAttribute("role_name", mapRole.get("name"));
         model.addAttribute("division_name", mapDivision.get("name"));
         model.addAttribute("page_name", pageName);

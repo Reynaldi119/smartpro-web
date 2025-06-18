@@ -8,44 +8,89 @@
 </head>
 <body>
     <div class="main-content container-fluid" layout:fragment="main-content">
-        <h1>Edit Profile</h1>
-
-        <form>
-
-            <div class="form-profile">
-                <label for="data_picture">Picture
-                    <input type="url" alt="img" id="imageURL" for="data_picture">
-                </label>
-                <input type="file" class="img" id="data_picture" for="data_picture" >
+        <h2 th:text="${page_name}"></h2>
+        <form id="form-edit-staff" th:object="${staff}" method="post" th:action="@{/app-setting/staff/{id} (id = ${id})}">
+            <div class="form-group position-relative">
+                <label for="upload">Picture</label>
+                <div class="position-relative">
+                    <input type="file" class="form-control" id="upload" th:field="*{photoProfileUrl}">
+                </div>
+                <ul class="error-ul">
+                    <li th:each="err : ${#fields.errors('photoProfileUrl')}" th:text="${err}" class="error">
+                    </li>
+                </ul>
+            <div class="form-group position-relative">
+                <label for="fullName">Fullname</label>
+                <div class="position-relative">
+                    <input type="text" class="form-control" id="fullName" th:field="*{fullName}">
+                </div>
+                <ul class="error-ul">
+                    <li th:each="err : ${#fields.errors('fullName')}" th:text="${err}" class="error">
+                    </li>
+                </ul>
             </div>
 
-            <div class="form-profile">
-                <label for="data_fullname">Fullname</label>
-                <input type="text" id="data_fullname" for="data_fullname">
+            <div class="form-group position-relative">
+                <label for="phoneNumber">Phone Number</label>
+                <div class="position-relative">
+                    <input type="text" class="form-control" id="phoneNumber" th:field="*{phoneNumber}">
+                </div>
+                <ul class="error-ul">
+                    <li th:each="err : ${#fields.errors('phoneNumber')}" th:text="${err}" class="error">
+                    </li>
+                </ul>
             </div>
 
-            <div class="form-profile">
-                <label for="data_phoneNumber">Phone Number</label>
-                <input type="number" id="data_phoneNumber" for="data_phoneNumber">
+            <div class="form-group position-relative">
+                <label for="username">Username</label>
+                <div class="position-relative">
+                    <input type="text" class="form-control" id="username" th:field="*{username}">
+                </div>
+                <ul class="error-ul">
+                    <li th:each="err : ${#fields.errors('username')}" th:text="${err}" class="error">
+                    </li>
+                </ul>
             </div>
 
-            <div class="form-profile">
-                <label for="data_username">Username</label>
-                <input type="text" id="data_username" for="data_username">
+            <div class="form-group position-relative">
+                <label for="password">Password</label>
+                <div class="position-relative">
+                    <input type="password" class="form-control" id="password" th:field="*{password}">
+                </div>
+                <ul class="error-ul">
+                    <li th:each="err : ${#fields.errors('password')}" th:text="${err}" class="error">
+                    </li>
+                </ul>
             </div>
 
-            <div class="form-profile">
-                <label for="data_password">Password</label>
-                <input type="password" id="data_password" for="data_password">
+            <div class="form-group position-relative">
+                <label for="division">Division</label>
+                <div class="position-relative">
+                    <input type = "text" class = "form-control" id="division" name = "divisionName" th:field = "*{division.name}" placeholder="Pilih">
+                    <input type="hidden" th:field="*{division.id}" id="divisionId" />
+                </div>
+                <ul class="error-ul">
+                    <li th:each="err : ${#fields.errors('division')}" th:text="${err}" class="error">
+                    </li>
+                </ul>
             </div>
 
-            <div class="form-profile">
-                <label for="data_division">Division</label>
-                <input type="text" id="data_division" for="data_division">
+            <div class="form-group position-relative">
+                <label for="role">Role</label>
+                <div class="position-relative">
+                    <input type = "text" class = "form-control" id="role" name = "roleId" th:field = "*{role.id}" placeholder="Pilih">
+                    <input type="hidden" th:field="*{role.name}" id="roleName" />
+                </div>
+                <ul class="error-ul">
+                    <li th:each="err : ${#fields.errors('role')}" th:text="${err}" class="error">
+                    </li>
+                </ul>
             </div>
 
-            <button type="submit" class="btn">Save</button>
-            <button type="submit" class="btn_1">Cancel</button>
+            <div class="clearfix d-flex flex-row gap-1 justify-content-end">
+                <button class="btn btn-primary float-end" type="submit">Save</button>
+                <a class="btn btn-secondary float-end" th:href="@{/app-setting/staff}">Cancel</a>
+            </div>
 
 
         </form>

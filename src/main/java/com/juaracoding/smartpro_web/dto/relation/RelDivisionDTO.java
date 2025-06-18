@@ -1,15 +1,17 @@
 package com.juaracoding.smartpro_web.dto.relation;
 
-public class RoleRelationDTO {
-    private String id;
+public class RelDivisionDTO {
+
+    private Long id;
 
     private String name;
 
-    public String getId() {
+    // setter getter
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -1,12 +1,11 @@
 package com.juaracoding.smartpro_web.dto.relation;
 
-public class SelectDivisionDTO {
+public class RelStaffDTO {
 
     private Long id;
 
-    private String name;
+    private String fullName;
 
-    // setter getter
     public Long getId() {
         return id;
     }
@@ -15,11 +14,11 @@ public class SelectDivisionDTO {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 }

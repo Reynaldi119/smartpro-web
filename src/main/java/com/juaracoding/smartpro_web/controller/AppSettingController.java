@@ -95,7 +95,7 @@ public class AppSettingController {
             } else {
                 jwtToken = GlobalFunction.setGlobalAttributeAndTokenCheck(model, request, "Staff");
 
-                responseObj = divisionService.findById(jwtToken, id);
+                responseObj = staffService.findById(jwtToken, false, id);
 
                 Map<String, Object> response = (Map<String, Object>) responseObj.getBody();
                 Map<String, Object> mapData = (Map<String, Object>) response.get("data");
@@ -182,7 +182,7 @@ public class AppSettingController {
         }
 
         try {
-            jwtToken = GlobalFunction.setGlobalAttributeAndTokenCheck(model, request, "Staff");
+            jwtToken = GlobalFunction.setGlobalAttributeAndTokenCheck(model, request, "Edit Profile");
             responseUpdate = staffService.update(jwtToken, editStaffDTO, id);
             responseUpload = staffService.uploadImage(jwtToken, editStaffDTO.getUsername(), file);
         } catch (Exception e) {

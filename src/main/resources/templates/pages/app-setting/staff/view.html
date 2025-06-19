@@ -3,27 +3,16 @@
       layout:decorate="~{layouts/main_layout}">
 <head>
     <meta charset="UTF-8" />
-    <title>Edit Profile</title>
-
+    <title>Staff Detail</title>
 </head>
 <body>
     <div class="main-content container-fluid" layout:fragment="main-content">
         <h2 th:text="${page_name}"></h2>
-        <form id="form-edit-staff" th:object="${staff}" method="post" th:action="@{/app-setting/staff/profile/{id} (id = ${id})}">
-            <div class="form-group position-relative">
-                <label for="upload">Picture</label>
-                <div class="position-relative">
-                    <input type="file" class="form-control" id="upload" accept="" th:field="*{photoProfileUrl}">
-                    <input type="text" hidden th:field="*{photoProfileUrl}">
-                </div>
-                <ul class="error-ul">
-                    <li th:each="err : ${#fields.errors('photoProfileUrl')}" th:text="${err}" class="error">
-                    </li>
-                </ul>
+        <form id="form-edit-staff" th:object="${staff}" method="post" th:action="@{/app-setting/staff/{id} (id = ${id})}">
             <div class="form-group position-relative">
                 <label for="fullName">Fullname</label>
                 <div class="position-relative">
-                    <input type="text" class="form-control" id="fullName" th:field="*{fullName}">
+                    <input type="text" class="form-control" id="fullName" th:field="*{fullName}" disabled>
                 </div>
                 <ul class="error-ul">
                     <li th:each="err : ${#fields.errors('fullName')}" th:text="${err}" class="error">
@@ -34,7 +23,7 @@
             <div class="form-group position-relative">
                 <label for="phoneNumber">Phone Number</label>
                 <div class="position-relative">
-                    <input type="text" class="form-control" id="phoneNumber" th:field="*{phoneNumber}">
+                    <input type="text" class="form-control" id="phoneNumber" th:field="*{phoneNumber}" disabled>
                 </div>
                 <ul class="error-ul">
                     <li th:each="err : ${#fields.errors('phoneNumber')}" th:text="${err}" class="error">
@@ -45,7 +34,7 @@
             <div class="form-group position-relative">
                 <label for="username">Username</label>
                 <div class="position-relative">
-                    <input type="text" class="form-control" id="username" th:field="*{username}">
+                    <input type="text" class="form-control" id="username" th:field="*{username}" disabled>
                 </div>
                 <ul class="error-ul">
                     <li th:each="err : ${#fields.errors('username')}" th:text="${err}" class="error">
@@ -56,7 +45,7 @@
             <div class="form-group position-relative">
                 <label for="password">Password</label>
                 <div class="position-relative">
-                    <input type="password" class="form-control" id="password" th:field="*{password}">
+                    <input type="password" class="form-control" id="password" th:field="*{password}" disabled>
                 </div>
                 <ul class="error-ul">
                     <li th:each="err : ${#fields.errors('password')}" th:text="${err}" class="error">
@@ -67,7 +56,7 @@
             <div class="form-group position-relative">
                 <label for="division">Division</label>
                 <div class="position-relative">
-                    <input type = "text" class = "form-control" id="division" name = "divisionName" th:field = "*{division.name}" placeholder="Pilih">
+                    <input type="text" class="form-control" id="division" name="divisionName" th:field="*{division.name}" placeholder="Pilih" disabled>
                     <input type="hidden" th:field="*{division.id}" id="divisionId" />
                 </div>
                 <ul class="error-ul">
@@ -79,8 +68,8 @@
             <div class="form-group position-relative">
                 <label for="role">Role</label>
                 <div class="position-relative">
-                    <input type="text" class="form-control" id="role" name="roleId" th:field="*{role.id}" placeholder="Pilih">
-                    <input type="hidden" th:field="*{role.name}" id="roleName" />
+                    <input type="text" class="form-control" id="role" name="roleId" th:field="*{role.name}" placeholder="Pilih" disabled>
+                    <input type="hidden" th:field="*{role.id}" id="roleName" />
                 </div>
                 <ul class="error-ul">
                     <li th:each="err : ${#fields.errors('role')}" th:text="${err}" class="error">
@@ -89,8 +78,7 @@
             </div>
 
             <div class="clearfix d-flex flex-row gap-1 justify-content-end">
-                <button class="btn btn-primary float-end" type="submit">Save</button>
-                <a class="btn btn-secondary float-end" th:href="@{/app-setting/staff}">Cancel</a>
+                <a class="btn btn-secondary float-end" th:href="@{/app-setting/staff}">Back</a>
             </div>
 
 

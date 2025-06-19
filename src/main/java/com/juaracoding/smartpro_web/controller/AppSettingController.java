@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.WebRequest;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.juaracoding.smartpro_web.dto.response.RoleDTO;
 import com.juaracoding.smartpro_web.dto.validation.EditDivisionDTO;
@@ -28,9 +27,7 @@ import com.juaracoding.smartpro_web.httpclient.MenuService;
 import com.juaracoding.smartpro_web.httpclient.RoleService;
 import com.juaracoding.smartpro_web.httpclient.StaffService;
 import com.juaracoding.smartpro_web.util.GlobalFunction;
-
 import jakarta.validation.Valid;
-import org.springframework.web.multipart.MultipartFile;
 
 
 @Controller
@@ -56,7 +53,7 @@ public class AppSettingController {
     @GetMapping("/staff")
     public String getStaffListPage(Model model, WebRequest request) {
         ResponseEntity<Object> responseObj = null;
-        
+
         try {
             // set global attributes and validate token
             String jwtToken = GlobalFunction.setGlobalAttributeAndTokenCheck(model, request, "Staff");
@@ -161,31 +158,6 @@ public class AppSettingController {
         return "redirect:/app-setting/staff";
     }
 
-//    @PostMapping("/staff/{id}")
-//    public String uploadStaffImage(
-//            Model model,
-//            @PathVariable String username,
-//            @RequestParam MultipartFile file, WebRequest request) {
-//        ResponseEntity<Object> response = null;
-//        String jwt = GlobalFunction.setGlobalAttributeAndTokenCheck(model, request,"Edit Profile");
-//        if (jwt.equals("redirect:/")) {
-//            return jwt;
-//        }
-//        try {
-//            response = staffService.uploadImage(jwt,username, file);
-//        } catch (Exception e) {
-//            System.out.println(e.getMessage());
-//            return "redirect:/";
-//        }
-//        Map<String, Object> data = (Map<String, Object>) response.getBody();
-//        String urlImg = data.get("url-img").toString();
-////        model.addAttribute("pesan","Data Berhasil Diubah");
-//        request.setAttribute("URL_IMG", urlImg, 1);
-//        GlobalFunction.setGlobalAttributeAndTokenCheck(model,request,"HOME");
-//        model.addAttribute("URL_IMG",urlImg);
-//        return "/pages/app-setting/staff/index";
-//    }
-
     // Division
     @GetMapping("/division")
     public String getDivisionListPage(Model model, WebRequest request) {
@@ -208,13 +180,13 @@ public class AppSettingController {
 
         return "/pages/app-setting/division/index";
     }
-    
+
     @GetMapping("/division/{id}")
     public String getDivision(@PathVariable Long id, @RequestParam Boolean isEdit, Model model, WebRequest request) {
         ResponseEntity<Object> responseObj = null;
         String jwtToken = "";
 
-        try {           
+        try {
             if (isEdit) {
                 jwtToken = GlobalFunction.setGlobalAttributeAndTokenCheck(model, request, "Edit Division");
 
@@ -249,9 +221,9 @@ public class AppSettingController {
     @PostMapping("/division/{id}")
     public String updateDivision(
         @ModelAttribute("division") @Valid EditDivisionDTO divisionDTO,
-        @PathVariable Long id, 
+        @PathVariable Long id,
         BindingResult bindingResult,
-        Model model, 
+        Model model,
         WebRequest request
     ) {
         //TODO: process POST request
@@ -297,13 +269,13 @@ public class AppSettingController {
 
         return "/pages/app-setting/role/index";
     }
-    
+
     @GetMapping("/role/{id}")
     public String getRole(@PathVariable Long id, @RequestParam Boolean isEdit, Model model, WebRequest request) {
         ResponseEntity<Object> responseObj = null;
         String jwtToken = "";
 
-        try {           
+        try {
             if (isEdit) {
                 jwtToken = GlobalFunction.setGlobalAttributeAndTokenCheck(model, request, "Edit Role");
 
@@ -338,9 +310,9 @@ public class AppSettingController {
     @PostMapping("/role/{id}")
     public String updateRole(
         @ModelAttribute("role") @Valid EditRoleDTO roleDTO,
-        @PathVariable Long id, 
+        @PathVariable Long id,
         BindingResult bindingResult,
-        Model model, 
+        Model model,
         WebRequest request
     ) {
         //TODO: process POST request
@@ -385,5 +357,5 @@ public class AppSettingController {
         }
         return "/pages/app-setting/role/permission";
     }
-    
+
 }

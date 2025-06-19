@@ -6,7 +6,87 @@
 </head>
 <body>
 <div class="main-content container-fluid" layout:fragment="main-content">
-    <p>This is a dynamic example using Thymeleaf and Bootstrap 5.</p>
+    <h2 th:text="${page_name}"></h2>
+    <span th:replace="~{/fragments/main_table :: main_table}"></span>
+<!--    <form id="form-dashboard" th:object="${procurementService}" method="post" th:action="@{/pages/index (id = ${id})}">-->
+<!--        <div class="form-group position-relative">-->
+<!--            <label for="procurementNo">Procurement Number</label>-->
+<!--            <div class="position-relative">-->
+<!--                <input type="text" class="form-control" id="procurementNo" th:field="*{procurementNo}" disabled>-->
+<!--            </div>-->
+<!--            <ul class="error-ul">-->
+<!--                <li th:each="err : ${#fields.errors('procurementNo')}" th:text="${err}" class="error">-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--        </div>-->
+
+<!--        <div class="form-group position-relative">-->
+<!--            <label for="itemName">Item</label>-->
+<!--            <div class="position-relative">-->
+<!--                <input type="text" class="form-control" id="itemName" th:field="*{itemName}" disabled>-->
+<!--            </div>-->
+<!--            <ul class="error-ul">-->
+<!--                <li th:each="err : ${#fields.errors('itemName')}" th:text="${err}" class="error">-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--        </div>-->
+
+<!--        <div class="form-group position-relative">-->
+<!--            <label for="itemDescription">Description</label>-->
+<!--            <div class="position-relative">-->
+<!--                <input type="text" class="form-control" id="itemDescription" th:field="*{itemDescription}" disabled>-->
+<!--            </div>-->
+<!--            <ul class="error-ul">-->
+<!--                <li th:each="err : ${#fields.errors('itemName')}" th:text="${err}" class="error">-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--        </div>-->
+
+<!--        <div class="form-group position-relative">-->
+<!--            <label for="requestedQuantity">Quantity</label>-->
+<!--            <div class="position-relative">-->
+<!--                <input type="text" class="form-control" id="requestedQuantity" th:field="*{requestedQuantity}" disabled>-->
+<!--            </div>-->
+<!--            <ul class="error-ul">-->
+<!--                <li th:each="err : ${#fields.errors('requestedQuantity')}" th:text="${err}" class="error">-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--        </div>-->
+
+<!--        <div class="form-group position-relative">-->
+<!--            <label for="unit">Unit</label>-->
+<!--            <div class="position-relative">-->
+<!--                <input type="text" class="form-control" id="unit" th:field="*{unit}" disabled>-->
+<!--            </div>-->
+<!--            <ul class="error-ul">-->
+<!--                <li th:each="err : ${#fields.errors('unit')}" th:text="${err}" class="error">-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--        </div>-->
+
+<!--        <div class="form-group position-relative">-->
+<!--            <label for="expectedDate">Request Time</label>-->
+<!--            <div class="position-relative">-->
+<!--                <input type="text" class="form-control" id="expectedDate" th:field="*{expectedDate}" disabled>-->
+<!--            </div>-->
+<!--            <ul class="error-ul">-->
+<!--                <li th:each="err : ${#fields.errors('unit')}" th:text="${err}" class="error">-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--        </div>-->
+
+<!--        <div class="form-group position-relative">-->
+<!--            <label for="status">Status</label>-->
+<!--            <div class="position-relative">-->
+<!--                <input type="text" class="form-control" id="status" th:field="*{status}" disabled>-->
+<!--            </div>-->
+<!--            <ul class="error-ul">-->
+<!--                <li th:each="err : ${#fields.errors('unit')}" th:text="${err}" class="error">-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--        </div>-->
+<!--    </form>-->
+
 </div>
 </body>
 </html>

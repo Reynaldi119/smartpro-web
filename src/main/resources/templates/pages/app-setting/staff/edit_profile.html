@@ -3,13 +3,13 @@
       layout:decorate="~{layouts/main_layout}">
 <head>
     <meta charset="UTF-8" />
-    <title>Edit profile</title>
+    <title>Edit Profile</title>
 
 </head>
 <body>
     <div class="main-content container-fluid" layout:fragment="main-content">
         <h2 th:text="${page_name}"></h2>
-        <form id="form-edit-staff" th:object="${staff}" method="post" th:action="@{/app-setting/staff/{id} (id = ${id})}">
+        <form id="form-edit-staff" th:object="${staff}" method="post" th:action="@{/app-setting/staff/profile/{id} (id = ${id})}">
             <div class="form-group position-relative">
                 <label for="upload">Picture</label>
                 <div class="position-relative">

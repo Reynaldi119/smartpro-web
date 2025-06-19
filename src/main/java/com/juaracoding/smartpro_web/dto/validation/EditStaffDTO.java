@@ -3,14 +3,11 @@ package com.juaracoding.smartpro_web.dto.validation;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.juaracoding.smartpro_web.dto.relation.RelDivisionDTO;
 import com.juaracoding.smartpro_web.dto.relation.RelRoleDTO;
-import jakarta.persistence.Column;
+
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 
 public class EditStaffDTO {
-
-    private String photoProfileUrl;
-
     @Pattern(regexp = "^[a-zA-Z\\s]{4,70}$",
             message = "Invalid format! Only alphabets and spaces are allowed, min 4 to 70 characters")
     @JsonProperty("full-name")
@@ -29,6 +26,8 @@ public class EditStaffDTO {
             message = "Minimum format allowed: 1 number, 1 lowercase letter, 1 uppercase letter, 1 special characters (_ \"Underscore\", - \"Hyphen\", # \"Hash\", or $ \"Dollar\" or @ \"At\"). Password length allowed 9-16 characters alphanumeric combinations, example: P@ssw0rd123")
     private String password;
 
+    private String photoProfileUrl;
+
     @NotNull(message = "Division should not be null!")
     private RelDivisionDTO division;
 
@@ -36,10 +35,6 @@ public class EditStaffDTO {
     private RelRoleDTO role;
 
     // setters getters
-
-
-
-
     public String getFullName() {
         return fullName;
     }
@@ -87,4 +82,14 @@ public class EditStaffDTO {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public String getPhotoProfileUrl() {
+        return photoProfileUrl;
+    }
+
+    public void setPhotoProfileUrl(String photoProfileUrl) {
+        this.photoProfileUrl = photoProfileUrl;
+    }
+
+
 }

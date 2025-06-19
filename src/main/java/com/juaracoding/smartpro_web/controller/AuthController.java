@@ -103,7 +103,7 @@ public class AuthController {
         }
 
         ResponseEntity<Object> responseGetStaff = null;
-        responseGetStaff = staffService.findById("Bearer " + tokenJwt, staffId);
+        responseGetStaff = staffService.findById("Bearer " + tokenJwt, false, staffId);
         Map<String, Object> mapStaff = (Map<String, Object>) ((Map<String, Object>) responseGetStaff.getBody()).get("data");
 
         request.setAttribute("jwt_token", tokenJwt, 1);

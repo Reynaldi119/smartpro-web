@@ -3,9 +3,6 @@ package com.juaracoding.smartpro_web.controller;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.juaracoding.smartpro_web.dto.response.ResProfileDTO;
-import com.juaracoding.smartpro_web.dto.response.ResStaffDTO;
-import com.juaracoding.smartpro_web.dto.validation.EditStaffDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -18,11 +15,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.juaracoding.smartpro_web.dto.response.ResProfileDTO;
+import com.juaracoding.smartpro_web.dto.response.ResStaffDTO;
 import com.juaracoding.smartpro_web.dto.response.RoleDTO;
 import com.juaracoding.smartpro_web.dto.validation.EditDivisionDTO;
 import com.juaracoding.smartpro_web.dto.validation.EditRoleDTO;
+import com.juaracoding.smartpro_web.dto.validation.EditStaffDTO;
 import com.juaracoding.smartpro_web.httpclient.DivisionService;
 import com.juaracoding.smartpro_web.httpclient.MenuService;
 import com.juaracoding.smartpro_web.httpclient.RoleService;
@@ -30,7 +31,6 @@ import com.juaracoding.smartpro_web.httpclient.StaffService;
 import com.juaracoding.smartpro_web.util.GlobalFunction;
 
 import jakarta.validation.Valid;
-import org.springframework.web.multipart.MultipartFile;
 
 
 @Controller
@@ -84,7 +84,7 @@ public class AppSettingController {
             if (isEdit) {
                 jwtToken = GlobalFunction.setGlobalAttributeAndTokenCheck(model, request, "Staff");
 
-                responseObj = staffService.findById(jwtToken, id);
+                responseObj = staffService.findById(jwtToken, false, id);
 
                 Map<String, Object> response = (Map<String, Object>) responseObj.getBody();
                 Map<String, Object> mapData = (Map<String, Object>) response.get("data");
@@ -118,7 +118,7 @@ public class AppSettingController {
         try {
             jwtToken = GlobalFunction.setGlobalAttributeAndTokenCheck(model, request, "Staff");
 
-            responseObj = staffService.findById(jwtToken, id);
+            responseObj = staffService.findById(jwtToken, true, id);
 
             Map<String, Object> response = (Map<String, Object>) responseObj.getBody();
             Map<String, Object> mapData = (Map<String, Object>) response.get("data");
@@ -153,6 +153,38 @@ public class AppSettingController {
         try {
             jwtToken = GlobalFunction.setGlobalAttributeAndTokenCheck(model, request, "Staff");
             responseObj = staffService.update(jwtToken, editStaffDTO, id);
+        } catch (Exception e) {
+            System.out.println("Error : " + e.getMessage());
+            return "redirect:/";
+        }
+
+        return "redirect:/app-setting/staff";
+    }
+
+    @PostMapping("/staff/profile/{id}")
+    public String updateStaffProfile(
+            @ModelAttribute("staff") @Valid EditStaffDTO editStaffDTO,
+            @PathVariable Long id,
+            @RequestParam MultipartFile file,
+            BindingResult bindingResult,
+            Model model,
+            WebRequest request
+    ) {
+        //TODO: process POST request
+        ResponseEntity<Object> responseUpdate = null;
+        ResponseEntity<Object> responseUpload = null;
+        String jwtToken = "";
+
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("staff", editStaffDTO);
+            model.addAttribute("id", id);
+            return "redirect:/";
+        }
+
+        try {
+            jwtToken = GlobalFunction.setGlobalAttributeAndTokenCheck(model, request, "Staff");
+            responseUpdate = staffService.update(jwtToken, editStaffDTO, id);
+            responseUpload = staffService.uploadImage(jwtToken, editStaffDTO.getUsername(), file);
         } catch (Exception e) {
             System.out.println("Error : " + e.getMessage());
             return "redirect:/";
